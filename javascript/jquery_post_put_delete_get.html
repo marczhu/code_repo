@@ -29,15 +29,15 @@
                         url: $("#action").val(),
                         contentType: "application/json",
                         data: $("#json").val(),
-                        success:function(data,status,xhr){
+                        success: function (data, status, xhr) {
                             alert("Data: " + data + "\nStatus: " + status);
                             $("#result").val(JSON.stringify(data));
                         },
-                        error:function(xhr,status,error){
+                        error: function (xhr, status, error) {
                             alert("Error: " + error + "\nStatus: " + status);
                             $("#result").val(JSON.stringify(data));
                         },
-                        complete:function(xhr,status){
+                        complete: function (xhr, status) {
                             alert("xhr: " + xhr + "\nStatus: " + status);
                         }
 
@@ -48,11 +48,11 @@
                         url: $("#action").val(),
                         contentType: "application/json",
                         data: $("#json").val(),
-                        success:function(data,status,xhr){
+                        success: function (data, status, xhr) {
                             alert("Data: " + data + "\nStatus: " + status);
                             $("#result").val(JSON.stringify(data));
                         },
-                        error:function(xhr,status,error){
+                        error: function (xhr, status, error) {
                             alert("Error: " + error + "\nStatus: " + status);
                             $("#result").val(JSON.stringify(data));
                         }
@@ -74,9 +74,12 @@
         <option value="DELETE">DELETE</option>
     </select>
 </p>
-<p> json: <textarea cols="50" rows="10" id="json">{"title":"裂变优惠券测试666","start_time":1490690026000,"end_time":1491554026000,"ref_activity_id":1000,"amount":10}</textarea></p>
+<p> json: <textarea cols="50" rows="10" id="json">{"title":"裂变优惠券测试666","start_time":1490690026000,"end_time":1491554026000,"ref_activity_id":1000,"amount":10}</textarea>
+</p>
 <p> result: <textarea cols="50" rows="10" id="result"></textarea></p>
-<p><button type="button"> Click Me </button></p>
+<p>
+    <button type="button"> Click Me</button>
+</p>
 
 </body>
 </html>
