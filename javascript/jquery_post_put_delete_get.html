@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>jquery ajax post-get-put-delete</title>
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js">
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("button").click(function () {
+                if ($("#method").val() == 'POST') {
+                    $.post(
+                        $("#action").val(),
+                        $("#json").val(),
+                        function (data, status) {
+                            alert("Data: " + data + "\nStatus: " + status);
+                            $("#result").val(JSON.stringify(data));
+                        });
+                } else if ($("#method").val() == 'GET') {
+                    $.get($("#action").val(), function (data, status) {
+                        alert("Data: " + data + "\nStatus: " + status);
+                        $("#result").val(JSON.stringify(data));
+                    });
+                } else if ($("#method").val() == 'PUT') {
+                    $.ajax({
+                        type: "PUT",
+                        url: $("#action").val(),
+                        contentType: "application/json",
+                        data: $("#json").val(),
+                        success:function(data,status,xhr){
+                            alert("Data: " + data + "\nStatus: " + status);
+                            $("#result").val(JSON.stringify(data));
+                        },
+                        error:function(xhr,status,error){
+                            alert("Error: " + error + "\nStatus: " + status);
+                            $("#result").val(JSON.stringify(data));
+                        },
+                        complete:function(xhr,status){
+                            alert("xhr: " + xhr + "\nStatus: " + status);
+                        }
+
+                    });
+                } else if ($("#method").val() == 'DELETE') {
+                    $.ajax({
+                        type: "DELETE",
+                        url: $("#action").val(),
+                        contentType: "application/json",
+                        data: $("#json").val(),
+                        success:function(data,status,xhr){
+                            alert("Data: " + data + "\nStatus: " + status);
+                            $("#result").val(JSON.stringify(data));
+                        },
+                        error:function(xhr,status,error){
+                            alert("Error: " + error + "\nStatus: " + status);
+                            $("#result").val(JSON.stringify(data));
+                        }
+                    });
+                } else {
+                    alert('invalid method for:' + $("#method").val());
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+<p> action: <textarea cols="80" rows="2" id="action">item.json</textarea></p>
+<p> method:
+    <select id="method">
+        <option value="POST">POST</option>
+        <option value="GET">GET</option>
+        <option value="PUT">PUT</option>
+        <option value="DELETE">DELETE</option>
+    </select>
+</p>
+<p> json: <textarea cols="50" rows="10" id="json">{"title":"裂变优惠券测试666","start_time":1490690026000,"end_time":1491554026000,"ref_activity_id":1000,"amount":10}</textarea></p>
+<p> result: <textarea cols="50" rows="10" id="result"></textarea></p>
+<p><button type="button"> Click Me </button></p>
+
+</body>
+</html>
